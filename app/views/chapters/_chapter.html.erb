@@ -11,12 +11,17 @@
 
   <p class="my-5">
     <strong class="block font-medium mb-1">Story:</strong>
-    <%= chapter.story_id %>
+    <%= chapter.story.title %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Description:</strong>
+    <%= chapter.content %>
   </p>
 
   <% if action_name != "show" %>
-    <%= link_to "Show this chapter", chapter, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to 'Edit this chapter', edit_chapter_path(chapter), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Show this chapter", story_chapter_path(@story.chapter chapter), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%# link_to 'Edit this chapter', edit_story_chapter_path(chapter), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
     <hr class="mt-6">
   <% end %>
 </div>

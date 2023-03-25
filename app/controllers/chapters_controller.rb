@@ -3,7 +3,8 @@ class ChaptersController < ApplicationController
 
   # GET /chapters or /chapters.json
   def index
-    @chapters = Chapter.all
+    @story = Story.find(params[:story_id])
+    @chapters = @story.chapters
   end
 
   # GET /chapters/1 or /chapters/1.json
@@ -12,7 +13,9 @@ class ChaptersController < ApplicationController
 
   # GET /chapters/new
   def new
-    @chapter = Chapter.new
+    @story = Story.find(params[:story_id])
+    @chapter = @story.chapters.build
+    #@chapter = Chapter.new
   end
 
   # GET /chapters/1/edit
@@ -21,11 +24,13 @@ class ChaptersController < ApplicationController
 
   # POST /chapters or /chapters.json
   def create
-    @chapter = Chapter.new(chapter_params)
+    #@chapter = Chapter.new(chapter_params)
+    @story = Story.find(params[:story_id])
+    @chapter = @story.chapters.create
 
     respond_to do |format|
       if @chapter.save
-        format.html { redirect_to chapter_url(@chapter), notice: "Chapter was successfully created." }
+        format.html { redirect_to story_chapters_url(@chapter), notice: "Chapter was successfully created." }
         format.json { render :show, status: :created, location: @chapter }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +43,7 @@ class ChaptersController < ApplicationController
   def update
     respond_to do |format|
       if @chapter.update(chapter_params)
-        format.html { redirect_to chapter_url(@chapter), notice: "Chapter was successfully updated." }
+        format.html { redirect_to story_chapters_url(@chapter), notice: "Chapter was successfully updated." }
         format.json { render :show, status: :ok, location: @chapter }
       else
         format.html { render :edit, status: :unprocessable_entity }

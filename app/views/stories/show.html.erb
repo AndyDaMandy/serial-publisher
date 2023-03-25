@@ -1,10 +1,16 @@
 <div class="mx-auto md:w-2/3 w-full flex">
   <div class="mx-auto">
-    <% if notice.present? %>
-      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-    <% end %>
 
     <%= render @story %>
+
+    <% if user_signed_in? && @story.user == current_user %>
+      <%= link_to "Add a new chapter", new_story_chapter_path(@story), class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+    <% end %>
+    
+    <% @story.chapters.each do |chapter|%>
+      <%= chapter.title %>
+    <% end %>
+    
 
     <%= link_to 'Edit this story', edit_story_path(@story), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <div class="inline-block ml-2">
