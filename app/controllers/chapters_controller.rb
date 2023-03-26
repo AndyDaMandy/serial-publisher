@@ -24,6 +24,7 @@ class ChaptersController < ApplicationController
   # POST /chapters or /chapters.json
   def create
     @chapter = @story.chapters.create(chapter_params)
+    @chapter.user_id = current_user.id
 
     respond_to do |format|
       if @chapter.save
