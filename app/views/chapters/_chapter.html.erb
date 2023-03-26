@@ -1,21 +1,20 @@
 <div id="<%= dom_id chapter %>">
   <p class="my-5">
-    <strong class="block font-medium mb-1">Title:</strong>
+    <strong class="block font-medium mb-1">Story:</strong>
+    <%= chapter.story.title %>
+  </p>
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Chapter Title:</strong>
     <%= chapter.title %>
   </p>
 
   <p class="my-5">
-    <strong class="block font-medium mb-1">Description:</strong>
+    <strong class="block font-medium mb-1">Chapter Description:</strong>
     <%= chapter.description %>
   </p>
 
   <p class="my-5">
-    <strong class="block font-medium mb-1">Story:</strong>
-    <%= chapter.story.title %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Description:</strong>
+    <strong class="block font-medium mb-1">Chapter:</strong>
     <%= chapter.content %>
   </p>
 

@@ -1,11 +1,26 @@
+<div class="mx-auto">
+  <%= link_to 'Back To Stories', stories_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+  </div>
 <div class="w-full">
-
   <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Chapters</h1>
+    
+    <h1 class="font-bold text-4xl"><%= @story.title %> - Chapters List</h1>
     <%= link_to 'New chapter', new_story_chapter_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
 
   <div id="chapters" class="min-w-full">
-    <%= render @chapters %>
+    <% @story.chapters.each do |chapter| %>
+    <h3 class="my-5">
+    <%= chapter.title %>
+    </h3>
+    <p class="my-5">
+    <%= chapter.description %>
+    </p>
+    <% if action_name != "show" %>
+    <%= link_to "Show this chapter", story_chapter_path(@story, chapter), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Edit this chapter', edit_story_chapter_path(@story, chapter), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+    <% end %>
+  <% end %>
   </div>
 </div>
