@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  
+  resources :users do
+    resources :stories
+  end
   resources :stories do
     resources :chapters
   end
