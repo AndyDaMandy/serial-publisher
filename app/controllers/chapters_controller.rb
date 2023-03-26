@@ -1,9 +1,9 @@
 class ChaptersController < ApplicationController
+  before_action :get_story
   before_action :set_chapter, only: %i[ show edit update destroy ]
 
   # GET /chapters or /chapters.json
   def index
-    @story = Story.find(params[:story_id])
     @chapters = @story.chapters
   end
 
@@ -13,7 +13,6 @@ class ChaptersController < ApplicationController
 
   # GET /chapters/new
   def new
-    @story = Story.find(params[:story_id])
     @chapter = @story.chapters.build
     #@chapter = Chapter.new
   end
@@ -24,13 +23,11 @@ class ChaptersController < ApplicationController
 
   # POST /chapters or /chapters.json
   def create
-    #@chapter = Chapter.new(chapter_params)
-    @story = Story.find(params[:story_id])
-    @chapter = @story.chapters.create
+    @chapter = @story.chapters.create(chapter_params)
 
     respond_to do |format|
       if @chapter.save
-        format.html { redirect_to story_chapters_url(@chapter), notice: "Chapter was successfully created." }
+        format.html { redirect_to story_chapters_path(@story), notice: "Chapter was successfully created." }
         format.json { render :show, status: :created, location: @chapter }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -43,7 +40,7 @@ class ChaptersController < ApplicationController
   def update
     respond_to do |format|
       if @chapter.update(chapter_params)
-        format.html { redirect_to story_chapters_url(@chapter), notice: "Chapter was successfully updated." }
+        format.html { redirect_to story_chapters_path(@story), notice: "Chapter was successfully updated." }
         format.json { render :show, status: :ok, location: @chapter }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -64,8 +61,12 @@ class ChaptersController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def get_story
+      @story = Story.find(params[:story_id])
+    end
+
     def set_chapter
-      @chapter = Chapter.find(params[:id])
+      @chapter = @story.chapters.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
