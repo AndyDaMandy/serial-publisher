@@ -11,7 +11,7 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body class="bg-[#FCF5E5]">
   <div class="container mx-auto py-5 flex">
       <% if notice %>
         <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block"><%= notice %></p>
@@ -20,6 +20,7 @@
         <p class="py-2 px-3 bg-red-50 mb-5 text-red-500 font-medium rounded-lg inline-block"><%= alert %></p>
       <% end %>
     </div>
+    <%= render 'layouts/navbar'%>
     <main class="container mx-auto mt-28 px-5 flex">
       <%= yield %>
     </main>
