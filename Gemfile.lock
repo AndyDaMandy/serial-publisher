@@ -108,6 +108,8 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    jsbundling-rails (1.1.1)
+      railties (>= 6.0.0)
     launchy (2.5.2)
       addressable (~> 2.8)
     letter_opener (1.8.1)
@@ -199,6 +201,8 @@ GEM
       railties (>= 6.0.0)
     thor (1.2.1)
     timeout (0.3.2)
+    tinymce-rails (6.4.0)
+      railties (>= 3.1.1)
     turbo-rails (1.4.0)
       actionpack (>= 6.0.0)
       activejob (>= 6.0.0)
@@ -234,6 +238,7 @@ DEPENDENCIES
   devise
   importmap-rails
   jbuilder
+  jsbundling-rails (~> 1.1)
   letter_opener
   pg (~> 1.1)
   puma (~> 5.0)
@@ -242,6 +247,7 @@ DEPENDENCIES
   sprockets-rails
   stimulus-rails
   tailwindcss-rails
+  tinymce-rails
   turbo-rails
   tzinfo-data
   web-console

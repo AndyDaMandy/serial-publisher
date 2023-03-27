@@ -32,6 +32,9 @@ gem "jbuilder"
 
 gem "devise"
 
+#to replace trix
+gem 'tinymce-rails'
+
 gem "letter_opener", group: :development
 
 # Use Redis adapter to run Action Cable in production
@@ -77,3 +80,5 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+gem "jsbundling-rails", "~> 1.1"
