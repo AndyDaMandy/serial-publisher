@@ -2,6 +2,15 @@
   <div class="mx-auto">
 
     <%= render @story %>
+    <ul>
+    <% @story.chapters.each do |chapter| %>
+    <li>
+      <%= link_to story_chapters_path(chapter) do %>
+     <%= chapter.chapter_number %> - <%= chapter.title %>
+      <% end %>
+      </li>
+    <% end %>
+    </ul>
 
     <%= link_to 'View Chapters', story_chapters_path(@story), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 hover:bg-gray-300 inline-block font-medium" %>
     <% if user_signed_in? && @story.user == current_user %>
