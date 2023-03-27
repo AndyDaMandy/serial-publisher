@@ -3,7 +3,7 @@
     <% if user_signed_in? %>
         <li class="mr-6"><strong><%= current_user.username %></strong><li>
         <li class="mr-6">
-        <%= button_to "Sign Out", destroy_user_session_path, method: :delete, data: { confirm: "Are you sure you'd like to sign out?" } %>
+        <%= link_to "Sign Out", destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure you'd like to sign out?" } %>
         </li>
     <% else %>
         <li class="mr-6">
