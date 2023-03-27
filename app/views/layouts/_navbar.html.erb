@@ -1,11 +1,19 @@
 <div class="container mx-auto text-right py-5">
     <ul class="flex">
+    <% if user_signed_in? %>
+        <li class="mr-6"><strong><%= current_user.username %></strong><li>
+        <li class="mr-6">
+        <%= button_to "Sign Out", destroy_user_session_path, method: :delete, data: { confirm: "Are you sure you'd like to sign out?" } %>
+        </li>
+    <% else %>
         <li class="mr-6">
             <%= link_to "Log In", new_user_session_path, class: "text-yellow-900 hover:text-yellow-600" %>
         </li>
         <li class="mr-6">
             <%= link_to "Sign Up", new_user_registration_path, class: "text-yellow-900 hover:text-yellow-600" %>
         </li>
-        </ul>
+    <% end %>
+        
+    </ul>
         
   </div>

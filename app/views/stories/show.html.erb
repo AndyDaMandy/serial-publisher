@@ -2,17 +2,18 @@
   <div class="mx-auto">
 
     <%= render @story %>
+    <%= link_to 'New chapter', new_story_chapter_path(@story), class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
     <ul>
     <% @story.chapters.each do |chapter| %>
     <li>
-      <%= link_to story_chapters_path(chapter) do %>
-     <%= chapter.chapter_number %> - <%= chapter.title %>
+      <%= link_to story_chapters_path(chapter), class: "hover:text-amber-700" do %>
+    Chapter <%= chapter.chapter_number %> - <%= chapter.title %>
       <% end %>
       </li>
     <% end %>
     </ul>
 
-    <%= link_to 'View Chapters', story_chapters_path(@story), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 hover:bg-gray-300 inline-block font-medium" %>
+    <%# link_to 'View Chapters', story_chapters_path(@story), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 hover:bg-gray-300 inline-block font-medium" %>
     <% if user_signed_in? && @story.user == current_user %>
       <%= link_to 'Edit this story', edit_story_path(@story), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 hover:bg-gray-300 inline-block font-medium" %>
       <div class="inline-block ml-2">

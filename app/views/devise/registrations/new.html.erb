@@ -7,6 +7,10 @@
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
+  <div class="my-5">
+    <%= f.label :username %><br />
+    <%= f.text_field :username, autofocus: true, autocomplete: "username" %>
+  </div>
 
   <div class="my-5">
     <%= f.label :password %>
@@ -19,6 +23,14 @@
   <div class="my-5">
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+  <div class="my-5">
+    <%= f.label :about %><br />
+    <%= f.text_area :about, autofocus: true, autocomplete: "about" %>
+  </div>
+  <div class="my-5">
+    <%= f.label :favorite_quote %><br />
+    <%= f.text_area :favorite_quote, autofocus: true, autocomplete: "favorite_quote" %>
   </div>
 
   <div class="inline">
