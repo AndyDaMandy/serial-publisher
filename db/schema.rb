@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_30_203555) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_30_211220) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -32,6 +32,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_30_203555) do
     t.integer "follwer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "stars", force: :cascade do |t|
+    t.bigint "story_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["story_id"], name: "index_stars_on_story_id"
+    t.index ["user_id"], name: "index_stars_on_user_id"
   end
 
   create_table "stories", force: :cascade do |t|
@@ -65,5 +74,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_30_203555) do
 
   add_foreign_key "chapters", "stories"
   add_foreign_key "chapters", "users"
+  add_foreign_key "stars", "stories"
+  add_foreign_key "stars", "users"
   add_foreign_key "stories", "users"
 end

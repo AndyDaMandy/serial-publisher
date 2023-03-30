@@ -8,6 +8,7 @@ class User < ApplicationRecord
 
   has_many :stories, dependent: :destroy
   has_many :chapters, dependent: :destroy
+  has_many :stars, dependent: :destroy
   has_many :followings
   has_many :followers, :through => :followings
   has_many :inverse_followings, :class_name => "Following", :foreign_key => "follower_id"

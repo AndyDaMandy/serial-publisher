@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   
   resources :stories do
     resources :chapters
+    resources :stars
   end
   devise_for :users
 
