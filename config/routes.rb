@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'followings/create'
+  get 'followings/destroy'
   
   resources :stories do
     resources :chapters
