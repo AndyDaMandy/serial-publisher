@@ -1,0 +1,21 @@
+<div id="<%= dom_id user %>">
+  <h3 class="my-5">
+    <strong class="block font-medium mb-1">Username:</strong>
+    <%= user.username %>
+  </h3>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">About:</strong>
+    <%= user.about %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Favorite Quote:</strong>
+    <%= user.favorite_quote %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this user", users_show_path(:id => user), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>
