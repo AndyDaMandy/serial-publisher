@@ -26,11 +26,11 @@
   </div>
     <div class="my-5">
     <%= form.label :content %>
-    <%= form.text_area :content,:rows => 20, :cols => 20, class: "tinymce block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-    <%= tinymce %>
+    <%= form.rich_text_area :content, class: "block shadow bg-white rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%# tinymce %>
   </div>
 
   <div class="inline">
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 hover:bg-blue-800 text-white inline-block font-medium cursor-pointer" %>
   </div>
 <% end %>

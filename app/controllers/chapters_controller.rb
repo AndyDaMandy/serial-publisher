@@ -39,6 +39,7 @@ class ChaptersController < ApplicationController
 
   # PATCH/PUT /chapters/1 or /chapters/1.json
   def update
+    @chapter.user = current_user
     respond_to do |format|
       if @chapter.update(chapter_params)
         format.html { redirect_to story_path(@story), notice: "Chapter was successfully updated." }
@@ -55,7 +56,7 @@ class ChaptersController < ApplicationController
     @chapter.destroy
 
     respond_to do |format|
-      format.html { redirect_to story_chapters_url(@chapter), notice: "Chapter was successfully destroyed." }
+      format.html { redirect_to story_url(@story), notice: "Chapter was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -72,6 +73,6 @@ class ChaptersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def chapter_params
-      params.require(:chapter).permit(:title, :chapter_number, :description, :content, :story_id)
+      params.require(:chapter).permit(:title, :chapter_number, :description, :content, :story_id, :user_id)
     end
 end

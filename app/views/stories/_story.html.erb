@@ -17,12 +17,17 @@
     <strong class="block font-medium mb-1">Author:</strong>
     <%= story.user.username %>
   </p>
-  <p>&#11088 <%= story.stars.count %> <%= (story.stars.count) == 1 ? 'Star' : 'Stars'%></p>
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Number of Chapters:</strong>
+    <%= story.chapters.count %>
+  </p>
+
+  <p class="my-3">&#11088 <%= story.stars.count %> <%= (story.stars.count) == 1 ? 'Star' : 'Stars'%></p>
 
   <% if action_name != "show" %>
-    <%= link_to "Show this story", story, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Show this story", story, class: "rounded-lg py-3 px-5 bg-gray-100 hover:bg-gray-300 inline-block font-medium" %>
     <% if story.user == current_user %>
-    <%= link_to 'Edit this story', edit_story_path(story), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Edit this story', edit_story_path(story), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 hover:bg-gray-300 inline-block font-medium" %>
     <% end %>
     <hr class="mt-6">
   <% end %>

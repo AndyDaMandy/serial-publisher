@@ -13,3 +13,12 @@
  *= require_tree .
  *= require_self
  */
+
+
+  .trix-button--icon-link {
+    display: none;
+  }
+  .trix-button--icon-attach {
+    display: none;
+  }
+  

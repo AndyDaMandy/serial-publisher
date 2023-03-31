@@ -1,2 +1,2 @@
 toolbar:
-  - styleselect | bold italic | undo redo
+  - styleselect | h1 h2 h3 h4 h5 bold italic hr indent strikethrough subscript superscript | undo redo
