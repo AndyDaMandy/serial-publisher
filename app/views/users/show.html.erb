@@ -1,23 +1,26 @@
 <div class="mx-auto md:w-2/3 w-full flex">
   <div class="mx-auto">
-
+    <%= link_to 'Back to users', users_index_path, class: "rounded-lg py-3 px-5 bg-gray-100 hover:bg-gray-300 inline-block font-medium" %>
     <%= render @user %>
     <%# link_to 'View Chapters', story_chapters_path(@story), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 hover:bg-gray-300 inline-block font-medium" %>
     <% if user_signed_in? && @user == current_user %>
       <%= link_to 'Edit favorite quote or about', edit_users_path(@user), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 hover:bg-gray-300 inline-block font-medium" %>
     <% end %>
-    <%= link_to 'Back to users', users_index_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 hover:bg-gray-300 inline-block font-medium" %>
+    
+    <div class="mt-10 my-3">
+      <h3 class="block text-2xl mb-1"><%= @user.username %>'s Stories</h3>
+      <ul>
+      <% @user.stories.each do |story| %>
+      <li class="text-xl my-1">
+        <%= link_to story_path(story), class: "hover:text-amber-700" do %>
+        <strong>
+      <%= story.title %>
+      </strong>
+        <% end %>
+        </li>
+      <% end %>
+      </ul>
+    </div>
+    <%= link_to 'Back to users', users_index_path, class: "rounded-lg py-3 px-5 bg-gray-100 hover:bg-gray-300 inline-block font-medium" %>
   </div>
 </div>
-<div class="mx-auto md:w-2/3 w-full flex">
-    <h3><%= @user.username %>'s Stories</h3>
-    <ul>
-    <% @user.stories.each do |story| %>
-    <li>
-      <%= link_to story_path(story), class: "hover:text-amber-700" do %>
-    <%= story.title %>
-      <% end %>
-      </li>
-    <% end %>
-    </ul>
-  </div>

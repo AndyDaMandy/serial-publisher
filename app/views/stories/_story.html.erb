@@ -1,8 +1,12 @@
 <div id="<%= dom_id story %>">
-  <h3 class="my-5">
-    <strong class="block font-medium mb-1">Title:</strong>
+  <div class="my-5">
+    <h3 class="text-2xl">
+      <strong class="block font-medium mb-1">Story Title:</strong>   
+    </h3>
+    <h1 class="text-4xl">
     <%= story.title %>
-  </h3>
+    </h1>
+  </div>
 
   <p class="my-5">
     <strong class="block font-medium mb-1">Description:</strong>
@@ -13,19 +17,13 @@
     <strong class="block font-medium mb-1">Author:</strong>
     <%= story.user.username %>
   </p>
-  <p><%= story.stars.count %> <%= (story.stars.count) == 1 ? 'Star' : 'Stars'%></p>
-  <% if user_signed_in? %>
-    <% pre_star = story.stars.find { |like| like.user_id == current_user.id} %>
-    <% if pre_star %>
-      <%= button_to 'Remove Star', story_star_path(story, pre_star), method: :delete %>
-    <% else %>
-      <%= button_to 'Star this story', story_stars_path(story), method: :post %>
-    <% end %>
-  <% end %>
+  <p>&#11088 <%= story.stars.count %> <%= (story.stars.count) == 1 ? 'Star' : 'Stars'%></p>
 
   <% if action_name != "show" %>
     <%= link_to "Show this story", story, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <% if story.user == current_user %>
     <%= link_to 'Edit this story', edit_story_path(story), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <% end %>
     <hr class="mt-6">
   <% end %>
 </div>
