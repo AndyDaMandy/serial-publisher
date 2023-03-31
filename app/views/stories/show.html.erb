@@ -1,4 +1,3 @@
-<%= debug @story %>
 <div class="mx-auto md:w-2/3 w-full flex">
   <div class="mx-auto">
 
@@ -7,7 +6,7 @@
     <% if user_signed_in? %>
         <% pre_star = @story.stars.find { |star| star.user_id == current_user.id} %>
       <% if pre_star %>
-        <%= button_to 'Remove Star', story_star_path(@story, pre_star), method: :delete, data: { turbo: "false" } %>
+        <%= button_to 'Remove Star', story_star_path(@story, pre_star), method: :delete %>
       <% else %>
         <%= button_to 'Star this story', story_stars_path(@story), method: :post %>
       <% end %>

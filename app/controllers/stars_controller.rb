@@ -12,7 +12,7 @@ class StarsController < ApplicationController
     end  
 
     def destroy
-        if !(already_starred?)
+        if already_starred? == false
           flash[:notice] = "Cannot remove star"
         else
           @star.destroy
@@ -29,6 +29,6 @@ class StarsController < ApplicationController
   end
   def already_starred?
     Star.where(user_id: current_user.id, story_id:
-    params[:star_id]).exists?
+    params[:story_id]).exists?
   end
 end
