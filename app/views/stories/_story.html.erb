@@ -18,6 +18,14 @@
     <%= story.user.username %>
   </p>
   <p class="my-5">
+    <strong class="block font-medium mb-1">Tags:</strong>
+    <% story.tags.each do |tag| %>
+      <%= link_to tag, class: "m-2 p-1 text-amber-900 hover:text-amber-600" do %>
+      <span class="tag"><%= tag.name.capitalize %></span>
+      <% end %>
+    <% end %>
+  </p>
+  <p class="my-5">
     <strong class="block font-medium mb-1">Number of Chapters:</strong>
     <%= story.chapters.count %>
   </p>

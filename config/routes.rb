@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :tags
   get 'users/index'
   get 'users/show'
   get 'users/edit'

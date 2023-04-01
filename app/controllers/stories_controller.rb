@@ -22,8 +22,9 @@ class StoriesController < ApplicationController
 
   # POST /stories or /stories.json
   def create
-    @story = Story.new(story_params)
+    @story = Story.new(story_params.except(:tags))
     @story.user = current_user
+    create_or_delete_story_tags(@story, params[:story][:tags])
 
     respond_to do |format|
       if @story.save
@@ -38,8 +39,9 @@ class StoriesController < ApplicationController
 
   # PATCH/PUT /stories/1 or /stories/1.json
   def update
+    create_or_delete_story_tags(@story, params[:story][:tags])
     respond_to do |format|
-      if @story.update(story_params)
+      if @story.update(story_params.except(:tags))
         format.html { redirect_to story_url(@story), notice: "Story was successfully updated." }
         format.json { render :show, status: :ok, location: @story }
       else
@@ -60,6 +62,14 @@ class StoriesController < ApplicationController
   end
 
   private
+
+    def create_or_delete_story_tags(story, tags)
+      story.taggables.destroy_all
+      tags = tags.strip.split(',')
+      tags.each do |tag|
+        story.tags << Tag.find_or_create_by(name: tag)
+      end
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_story
       @story = Story.find(params[:id])
@@ -71,6 +81,6 @@ class StoriesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def story_params
-      params.require(:story).permit(:title, :description, :user_id)
+      params.require(:story).permit(:title, :description, :user_id, :tags)
     end
 end
