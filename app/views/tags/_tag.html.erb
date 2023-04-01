@@ -1,19 +1,11 @@
 <div id="<%= dom_id tag %>">
   <p class="my-5">
-    <strong class="block font-medium mb-1">Name:</strong>
+    <strong class="block font-medium mb-1">Tag Name:</strong>
     <%= tag.name %>
   </p>
-
-  <%= tag.taggables.each do |taggable| %>
-    <h2>Story</h2>
-    <%= render 'stories/story', story: taggable.story %>
-    <%= link_to "Read more", taggable.story %>
-    <hr>
-  <% end %>
-
-  <%# if action_name != "show" %>
-    <%# link_to "Show this tag", tag, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+  <% if action_name != "show" %>
+    <%= link_to "Show this tag", tag, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <%# link_to 'Edit this tag', edit_tag_path(tag), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
     <hr class="mt-6">
-  <%# end %>
+  <% end %>
 </div>

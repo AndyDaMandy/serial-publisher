@@ -13,7 +13,7 @@
 
   <div class="my-5">
     <%= form.label :title %>
-    <%= form.text_area :title, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.text_area :title, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="my-5">
@@ -22,8 +22,8 @@
   </div>
 
   <div class="my-5">
-  <%= form.label :tag %>
-  <%= form.text_field :tags, value: story.tags.map(&:name).join(",") %>
+  <%= form.label :tag, "Tags, separated by a comma and space:" %>
+  <%= form.text_field :tags, value: story.tags.map(&:name).join(","), class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", placeholder: "example, second_tag, third_tag"%>
   </div>
 
   <div class="inline">
