@@ -64,11 +64,11 @@ class ChaptersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def get_story
-      @story = Story.find(params[:story_id])
+      @story = Story.friendly.find(params[:story_id])
     end
 
     def set_chapter
-      @chapter = @story.chapters.find(params[:id])
+      @chapter = @story.chapters.friendly.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

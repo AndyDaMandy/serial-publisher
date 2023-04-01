@@ -72,7 +72,7 @@ class StoriesController < ApplicationController
     end
     # Use callbacks to share common setup or constraints between actions.
     def set_story
-      @story = Story.find(params[:id])
+      @story = Story.friendly.find(params[:id])
     end
 
     def get_chapters

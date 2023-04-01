@@ -22,7 +22,7 @@ class StarsController < ApplicationController
 
   private  
   def find_story
-    @story = Story.find(params[:story_id])
+    @story = Story.friendly.find(params[:story_id])
   end
   def find_star
     @star = @story.stars.find(params[:id])
