@@ -1,10 +1,10 @@
-<div class="mx-auto">
-  <%= link_to 'Back To Stories', stories_path, class: "rounded-lg py-3 px-5 bg-blue-600 hover:bg-blue-800 text-white block font-medium" %>
-  </div>
 <div class="w-full">
-  <div class="flex justify-between items-center">  
-    <h1 class="font-bold text-4xl"><%= @story.title %> - Chapters List</h1>
+  <div class="flex justify-between items-center"> 
+   <h1 class="font-bold text-4xl"><%= @story.title %> - All Chapters</h1>
+   <% if user_signed_in? && @story.user == current_user %>
     <%= link_to 'New chapter', new_story_chapter_path, class: "rounded-lg py-3 px-5 bg-blue-600 hover:bg-blue-800 text-white block font-medium" %>
+    <% end %>
+    <%= link_to 'View All Stories', stories_path, class: "rounded-lg py-3 px-5 bg-blue-600 hover:bg-blue-800 text-white block font-medium" %>
   </div>
 
   <div id="chapters" class="min-w-full">
