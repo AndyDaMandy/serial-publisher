@@ -26,7 +26,7 @@
     <div class="mt-10 my-3">
     <h3 class="block text-2xl mb-1">Chapters</h3>
     <ul>
-    <% @story.chapters.each do |chapter| %>
+    <% @story.chapters.order("chapter_number DESC").each do |chapter| %>
     <li>
       <%= link_to story_chapter_path(@story, chapter), class: "hover:text-amber-700" do %>
     Chapter <%= chapter.chapter_number %> - <%= chapter.title %>

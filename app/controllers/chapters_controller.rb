@@ -4,7 +4,7 @@ class ChaptersController < ApplicationController
 
   # GET /chapters or /chapters.json
   def index
-    @chapters = @story.chapters
+    @chapters = @story.chapters.order("chapter_number DESC")
   end
 
   # GET /chapters/1 or /chapters/1.json

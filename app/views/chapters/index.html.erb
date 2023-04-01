@@ -5,6 +5,7 @@
     <%= link_to 'New chapter', new_story_chapter_path, class: "rounded-lg py-3 px-5 bg-blue-600 hover:bg-blue-800 text-white block font-medium" %>
     <% end %>
     <%= link_to 'View All Stories', stories_path, class: "rounded-lg py-3 px-5 bg-blue-600 hover:bg-blue-800 text-white block font-medium" %>
+    <%= link_to 'Back to story', story_path(@story), class: "rounded-lg py-3 px-5 bg-gray-100 hover:bg-gray-300 inline-block font-medium" %>
   </div>
 
   <div id="chapters" class="min-w-full">
