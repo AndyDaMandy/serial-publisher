@@ -1,6 +1,7 @@
 class StoriesController < ApplicationController
   before_action :set_story, only: %i[ show edit update destroy ]
   before_action :get_chapters, only: %i[ show ]
+  before_action :authenticate_user!, only: %i[ new create edit update destroy ]
 
   # GET /stories or /stories.json
   def index
@@ -27,8 +28,8 @@ class StoriesController < ApplicationController
   # POST /stories or /stories.json
   def create
     @story = Story.new(story_params.except(:tags))
-    @story.user = current_user
     create_or_delete_story_tags(@story, params[:story][:tags])
+    @story.user = current_user
 
     respond_to do |format|
       if @story.save
@@ -69,9 +70,9 @@ class StoriesController < ApplicationController
 
     def create_or_delete_story_tags(story, tags)
       story.taggables.destroy_all
-      tags = tags.strip.split(',')
+      tags = tags.gsub(/\A\p{Space}*/, ' ').strip.split(',')
         tags.each do |tag|
-          story.tags << Tag.friendly.find_or_create_by(name: tag)
+          story.tags << Tag.find_or_create_by(name: tag)
         end
     end
     # Use callbacks to share common setup or constraints between actions.

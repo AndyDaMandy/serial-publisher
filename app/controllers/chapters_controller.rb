@@ -1,6 +1,7 @@
 class ChaptersController < ApplicationController
   before_action :get_story
   before_action :set_chapter, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, only: %i[ new create edit update destroy ]
 
   # GET /chapters or /chapters.json
   def index
