@@ -28,7 +28,7 @@ class StoriesController < ApplicationController
   # POST /stories or /stories.json
   def create
     @story = Story.new(story_params.except(:tags))
-    create_or_delete_story_tags(@story, params[:story][:tags])
+    create_or_delete_stories_tags(@story, params[:story][:tags])
     @story.user = current_user
 
     respond_to do |format|
@@ -44,7 +44,7 @@ class StoriesController < ApplicationController
 
   # PATCH/PUT /stories/1 or /stories/1.json
   def update
-    create_or_delete_story_tags(@story, params[:story][:tags])
+    create_or_delete_stories_tags(@story, params[:story][:tags])
     respond_to do |format|
       if @story.update(story_params.except(:tags))
         format.html { redirect_to story_url(@story), notice: "Story was successfully updated." }
@@ -68,10 +68,11 @@ class StoriesController < ApplicationController
 
   private
 
-    def create_or_delete_story_tags(story, tags)
+    def create_or_delete_stories_tags(story, tags)
       story.taggables.destroy_all
-      tags = tags.gsub(/\A\p{Space}*|\p{Space}*\z/, ' ').split(',')
+      tags = tags.strip.split(',')
         tags.each do |tag|
+          tag.strip!
           story.tags << Tag.find_or_create_by!(name: tag)
         end
     end

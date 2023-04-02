@@ -1,12 +1,17 @@
 <div id="<%= dom_id tag %>">
-  <p class="my-5">
-
-    <strong class="block font-medium mb-1"><%= tag.name %></strong>
-    
-  </p>
+  
   <% if action_name != "show" %>
-    <%= link_to "Show this tag", tag, class: "text-amber-900 hover:text-amber-600" %>
+    <p class="my-5">
+    <%= link_to tag, class: "text-amber-900 hover:text-amber-600" do %>
+    <strong class="block font-medium mb-1"><%= tag.name %></strong>
+    <% end %>
+  </p>
+  <hr class="mt-1">
+  <% else %>
+    <p class="my-5">
+    <strong class="block font-medium mb-1"><%= tag.name %></strong>
+  </p>
+    <%# link_to "Show this tag", tag, class: "text-amber-900 hover:text-amber-600" %>
     <%# link_to 'Edit this tag', edit_tag_path(tag), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-1">
   <% end %>
 </div>

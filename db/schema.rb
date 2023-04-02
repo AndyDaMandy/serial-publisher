@@ -118,8 +118,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_01_142309) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "slug"
-    t.index ["slug"], name: "index_tags_on_slug", unique: true
   end
 
   create_table "users", force: :cascade do |t|
