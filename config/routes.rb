@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :stories do
     resources :chapters
     resources :stars
+    resources :bookmarks
   end
   devise_for :users
 

@@ -6,9 +6,20 @@
     <% if user_signed_in? %>
         <% pre_star = @story.stars.find { |star| star.user_id == current_user.id} %>
       <% if pre_star %>
-        <%= button_to 'Remove Star', story_star_path(@story.id, pre_star), method: :delete %>
+        <%= button_to 'Remove Star', story_star_path(@story.id, pre_star), method: :delete, class: "text-amber-900 hover:text-amber-600"  %>
       <% else %>
-        <%= button_to 'Star this story', story_stars_path(@story), method: :post %>
+        <%= button_to 'Star this story', story_stars_path(@story), method: :post, class: "text-amber-900 hover:text-amber-600"  %>
+      <% end %>
+    <% end %>
+    </div>
+    <div class="my-2">
+    <% if user_signed_in? %>
+        <% pre_bookmark = @story.bookmarks.find { |bookmark| bookmark.user_id == current_user.id} %>
+      <% if pre_bookmark %>
+        Bookmarked!
+        <%= button_to 'Remove Bookmark', story_bookmark_path(@story.id, pre_bookmark), method: :delete, class: "text-amber-900 hover:text-amber-600"  %>
+      <% else %>
+        <%= button_to 'Bookmark this story', story_bookmarks_path(@story), method: :post, class: "text-amber-900 hover:text-amber-600"  %>
       <% end %>
     <% end %>
     </div>
