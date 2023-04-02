@@ -4,7 +4,11 @@ class StoriesController < ApplicationController
 
   # GET /stories or /stories.json
   def index
+    if params[:self]
+      @stories = current_user.stories
+    else
     @stories = Story.all.order("created_at DESC")
+    end
   end
 
   # GET /stories/1 or /stories/1.json

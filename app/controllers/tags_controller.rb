@@ -3,7 +3,8 @@ class TagsController < ApplicationController
 
   # GET /tags or /tags.json
   def index
-    @tags = Tag.all.order("name ASC")
+    @pagy, @tags = pagy(Tag.all.order("name ASC"))
+    #@pagy, @tags = pagy(Tag.all)
   end
 
   # GET /tags/1 or /tags/1.json
