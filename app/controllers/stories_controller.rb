@@ -70,9 +70,9 @@ class StoriesController < ApplicationController
     def create_or_delete_story_tags(story, tags)
       story.taggables.destroy_all
       tags = tags.strip.split(',')
-      tags.each do |tag|
-        story.tags << Tag.friendly.find_or_create_by(name: tag)
-      end
+        tags.each do |tag|
+          story.tags << Tag.friendly.find_or_create_by(name: tag)
+        end
     end
     # Use callbacks to share common setup or constraints between actions.
     def set_story
