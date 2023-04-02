@@ -6,6 +6,9 @@
         <li class="mr-6">
             <%= link_to "View Authors", users_index_path, class: "text-amber-900 hover:text-amber-600" %>
         </li>
+        <li class="mr-6">
+            <%= link_to "View Tags", tags_path, class: "text-amber-900 hover:text-amber-600" %>
+        </li>
     <% if user_signed_in? %>
         <li class="mr-6 text-amber-900"><strong><%= current_user.username %></strong><li>
         <li class="mr-6">

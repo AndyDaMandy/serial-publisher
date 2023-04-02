@@ -67,7 +67,7 @@ class StoriesController < ApplicationController
       story.taggables.destroy_all
       tags = tags.strip.split(',')
       tags.each do |tag|
-        story.tags << Tag.find_or_create_by(name: tag)
+        story.tags << Tag.friendly.find_or_create_by(name: tag)
       end
     end
     # Use callbacks to share common setup or constraints between actions.
