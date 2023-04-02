@@ -16,6 +16,19 @@
     <strong class="block font-medium mb-1">Chapter Description:</strong>
     <%= chapter.description %>
   </p>
+  <p class="my-2"><em>Created on: <%= chapter.created_at.strftime("%c") %></em></p>
+  <p class="my-2">
+    <em>
+    Status: 
+      <% if chapter.status =='published'%>
+      Published
+      <% elsif chapter.status == 'archive' %>
+      Archived
+      <% else %>
+      Draft
+      <% end %>
+      </em>
+    </p>
 
   <div class="my-5">
     <strong class="block font-medium mb-1">Chapter:</strong>

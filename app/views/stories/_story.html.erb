@@ -17,6 +17,20 @@
     <strong class="block font-medium mb-1">Author:</strong>
     <%= story.user.username %>
   </p>
+      <p class="my-2"><em>Created on: <%= story.created_at.strftime("%c") %></em></p>
+  <p class="my-2">
+    <em>
+    Status: 
+      <% if story.status =='published'%>
+      Published
+      <% elsif story.status == 'archive' %>
+      Archived
+      <% else %>
+      Draft
+      <% end %>
+      </em>
+    </p>
+    
   <p class="my-5">
     <strong class="block font-medium mb-1">Tags:</strong>
     <% story.tags.each do |tag| %>

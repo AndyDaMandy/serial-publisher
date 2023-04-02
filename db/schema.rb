@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_01_142309) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_02_202900) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -62,6 +62,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_01_142309) do
     t.bigint "user_id"
     t.integer "chapter_number"
     t.string "slug"
+    t.integer "status"
     t.index ["slug"], name: "index_chapters_on_slug", unique: true
     t.index ["story_id"], name: "index_chapters_on_story_id"
     t.index ["user_id"], name: "index_chapters_on_user_id"
@@ -101,6 +102,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_01_142309) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
+    t.integer "status"
     t.index ["slug"], name: "index_stories_on_slug", unique: true
     t.index ["user_id"], name: "index_stories_on_user_id"
   end
@@ -136,6 +138,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_01_142309) do
     t.text "about"
     t.text "favorite_quote"
     t.string "slug"
+    t.integer "role"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

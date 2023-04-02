@@ -15,4 +15,11 @@ class User < ApplicationRecord
   has_many :followers, :through => :followings
   has_many :inverse_followings, :class_name => "Following", :foreign_key => "follower_id"
   has_many :inverse_followers, :through => :inverse_followings, :source => :user
+
+  enum role: [:user, :moderator, :admin]
+  after_initialize :set_default_role, :if => :new_record?
+  def set_default_role
+    self.role ||= :user
+  end
+
 end

@@ -11,4 +11,6 @@ class Story < ApplicationRecord
   has_many :taggables, dependent: :destroy
   has_many :tags, through: :taggables
   validates :title, presence: true, length: {minimum: 1, maximum: 1000 }
+
+  enum status: [:draft, :published, :archive]
 end
