@@ -8,7 +8,12 @@ class StoriesController < ApplicationController
     if user_signed_in?
       if params[:filter] == 'my_stories'
         @stories = current_user.stories.order("created_at DESC")
-      #elsif params[:filter] == 'bookmarked'
+      elsif params[:filter] == 'bookmarked'
+        arr = []
+        current_user.bookmarks.each do |bookmark|
+          arr << bookmark.story_id
+        end
+        @stories = Story.where(status: "published").and(Story.where(id: arr)).order("created_at DESC")
        #@stories = Story.where(status: "published").order("created_at DESC")
        #@stories = @stories.each.bookmarked_by(current_user)
        #@stories.all
