@@ -6,7 +6,7 @@ class ChaptersController < ApplicationController
   # GET /chapters or /chapters.json
   def index
     if user_signed_in?
-      if @chapter.user == current_user
+      if @story.user == current_user
         @chapters = @story.chapters.order("chapter_number DESC")
       else
         @chapters = @story.chapters.where(status: "published").order("created_at DESC")
