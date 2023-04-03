@@ -32,6 +32,10 @@ gem "jbuilder"
 
 gem "devise"
 
+gem "figaro"
+
+gem 'sendgrid-ruby'
+
 #to replace trix
 gem 'tinymce-rails'
 
@@ -87,3 +91,5 @@ group :test do
 end
 
 gem "jsbundling-rails", "~> 1.1"
+
+gem "dockerfile-rails", ">= 1.0.0", :group => :development
