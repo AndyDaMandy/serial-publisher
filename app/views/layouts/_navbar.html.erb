@@ -15,7 +15,10 @@
             <%= link_to "Write a New Story", new_story_path, class: "text-amber-900 hover:text-amber-600" %>
         </li>
         <li class="mr-6">
-            <%= link_to "My Stories", stories_path([:self]), class: "text-amber-900 hover:text-amber-600" %>
+            <%= link_to "My Stories", stories_path(:filter => 'my_stories'), class: "text-amber-900 hover:text-amber-600" %>
+        </li>
+        <li class="mr-6">
+            <%= link_to "Bookmarked", stories_path(:filter => 'bookmarked'), class: "text-amber-900 hover:text-amber-600" %>
         </li>
         <li class="mr-6">
             <%= link_to "Sign Out", destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure you'd like to sign out?" }, class: "text-amber-900 hover:text-amber-600" %>

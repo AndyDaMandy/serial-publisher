@@ -5,15 +5,35 @@ class StoriesController < ApplicationController
 
   # GET /stories or /stories.json
   def index
-    if params[:self]
-      @stories = current_user.stories
+    if user_signed_in?
+      if params[:filter] == 'my_stories'
+        @stories = current_user.stories.order("created_at DESC")
+      #elsif params[:filter] == 'bookmarked'
+       #@stories = Story.where(status: "published").order("created_at DESC")
+       #@stories = @stories.each.bookmarked_by(current_user)
+       #@stories.all
+       # @bookmarks = @stories.bookmarks
+       # @stories = @stories.where()
+      else
+        @stories = Story.where(status: "published").or(Story.where(user_id: current_user.id)).order("created_at DESC")
+      end
     else
-    @stories = Story.all.order("created_at DESC")
+      @stories = Story.where(status: "published").order("created_at DESC")
     end
+    #@stories = Story.all.order("created_at DESC")
   end
 
   # GET /stories/1 or /stories/1.json
   def show
+    if user_signed_in?
+      if @story.status != 'published' && @story.user != current_user
+        redirect_to story_path, alert: "You do not have access to this page"
+      end
+    else
+      if @story.status != 'published'
+        redirect_to story_path, alert: "You do not have access to this page"
+      end
+    end
   end
 
   # GET /stories/new
@@ -67,6 +87,20 @@ class StoriesController < ApplicationController
   end
 
   private
+
+  def bookmarked_by(user)
+    return false unless bookmarked?
+
+    bookmarks.any? {|b| b.user == user }
+  end   
+
+    def check_status(story)
+      if story.status == 'published'
+        true
+      else
+        false
+      end
+    end
 
     def create_or_delete_stories_tags(story, tags)
       story.taggables.destroy_all

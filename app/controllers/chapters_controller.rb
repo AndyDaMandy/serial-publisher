@@ -5,11 +5,28 @@ class ChaptersController < ApplicationController
 
   # GET /chapters or /chapters.json
   def index
-    @chapters = @story.chapters.order("chapter_number DESC")
+    if user_signed_in?
+      if @chapter.user == current_user
+        @chapters = @story.chapters.order("chapter_number DESC")
+      else
+        @chapters = @story.chapters.where(status: "published").order("created_at DESC")
+      end
+    else
+      @chapters = @story.chapters.where(status: "published").order("created_at DESC")
+    end
   end
 
   # GET /chapters/1 or /chapters/1.json
   def show
+    if user_signed_in?
+      if @chapter.status != 'published' && @chapter.user != current_user
+        redirect_to story_path, alert: "You do not have access to this page"
+      end
+    else
+      if @chapter.status != 'published'
+        redirect_to story_path, alert: "You do not have access to this page"
+      end
+    end
   end
 
   # GET /chapters/new

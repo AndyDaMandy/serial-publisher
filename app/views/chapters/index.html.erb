@@ -21,7 +21,9 @@
     </p>
     <% if action_name != "show" %>
     <%= link_to "Show this chapter", story_chapter_path(@story, chapter), class: "rounded-lg py-3 px-5 bg-gray-100 hover:bg-gray-300 inline-block font-medium" %>
-    <%= link_to 'Edit this chapter', edit_story_chapter_path(@story, chapter), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 hover:bg-gray-300 inline-block font-medium" %>
+    <% if user_signed_in? && chapter.user == current_user%>
+      <%= link_to 'Edit this chapter', edit_story_chapter_path(@story, chapter), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 hover:bg-gray-300 inline-block font-medium" %>
+    <% end %>
     <hr class="mt-6">
     <% end %>
   <% end %>

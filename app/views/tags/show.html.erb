@@ -3,9 +3,11 @@
     <%= render @tag %>
 
     <% @tag.taggables.each do |taggable| %>
+    <% if taggable.story.status == 'published'%>
     <%= render 'stories/story', story: taggable.story %>
     <%= link_to "Read this story", story_path(taggable.story), class: "m-2 p-1 text-amber-900 hover:text-amber-600" %>
     <hr class="mb-3">
+    <% end %>
   <% end %>
 
     <%# link_to 'Edit this tag', edit_tag_path(@tag), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
