@@ -17,7 +17,7 @@
   </div>
 
   <div class="my-5">
-    <%= form.label :description %>
+    <%= form.label :description, "Description - Optional" %>
     <%= form.text_area :description, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
   <div class="my-5">
@@ -30,7 +30,10 @@
   </div>
     <div class="my-5">
     <%= form.label :content %>
-    <%= form.text_area :content, class: "tinymce block shadow bg-white rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.text_area :content, class: "tinymce" %>
+    <script type="text/javascript">
+      tinymce.remove();
+    </script>
     <%= tinymce %>
   </div>
 
