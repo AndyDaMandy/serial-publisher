@@ -1,0 +1,37 @@
+<div class="container mx-auto text-right p-5">
+    <ul class="flex">
+        <li class="mr-6">
+            <%= link_to "All Stories", stories_path, class: "text-amber-900 hover:text-amber-600" %>
+        </li>
+        <li class="mr-6">
+            <%= link_to "Authors", users_index_path, class: "text-amber-900 hover:text-amber-600" %>
+        </li>
+        <li class="mr-6">
+            <%= link_to "Tags", tags_path, class: "text-amber-900 hover:text-amber-600" %>
+        </li>
+    <% if user_signed_in? %>
+        <li class="mr-6 text-amber-900"><strong><%= current_user.username %></strong><li>
+        <li class="mr-6">
+            <%= link_to "New Story", new_story_path, class: "text-amber-900 hover:text-amber-600" %>
+        </li>
+        <li class="mr-6">
+            <%= link_to "My Stories", stories_path(:filter => 'my_stories'), class: "text-amber-900 hover:text-amber-600" %>
+        </li>
+        <li class="mr-6">
+            <%= link_to "Bookmarked", stories_path(:filter => 'bookmarked'), class: "text-amber-900 hover:text-amber-600" %>
+        </li>
+        <li class="mr-6">
+            <%= link_to "Sign Out", destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure you'd like to sign out?" }, class: "text-amber-900 hover:text-amber-600" %>
+        </li>
+    <% else %>
+        <li class="mr-6">
+            <%= link_to "Log In", new_user_session_path, class: "text-amber-900 hover:text-amber-600" %>
+        </li>
+        <li class="mr-6">
+            <%= link_to "Sign Up", new_user_registration_path, class: "text-amber-900 hover:text-amber-600" %>
+        </li>
+    <% end %>
+        
+    </ul>
+        
+  </div>

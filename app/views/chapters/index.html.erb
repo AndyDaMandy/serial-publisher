@@ -2,10 +2,16 @@
   <div class="flex justify-between items-center"> 
    <h1 class="font-bold text-4xl"><%= @story.title %> - All Chapters</h1>
    <% if user_signed_in? && @story.user == current_user %>
+   <div class="my-3">
     <%= link_to 'New chapter', new_story_chapter_path, class: "rounded-lg py-3 px-5 bg-blue-600 hover:bg-blue-800 text-white block font-medium" %>
+    <div>
     <% end %>
+    <div class="my-3">
     <%= link_to 'View All Stories', stories_path, class: "rounded-lg py-3 px-5 bg-blue-600 hover:bg-blue-800 text-white block font-medium" %>
+    </div>
+    <div class="my-3">
     <%= link_to 'Back to story', story_path(@story), class: "rounded-lg py-3 px-5 bg-gray-100 hover:bg-gray-300 inline-block font-medium" %>
+    </div>
   </div>
 
   <div id="chapters" class="min-w-full">

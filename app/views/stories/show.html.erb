@@ -27,12 +27,16 @@
     <% if user_signed_in? && @story.user == current_user %>
     <%= link_to 'New chapter', new_story_chapter_path(@story), class: "rounded-lg py-3 px-5 bg-blue-600 hover:bg-blue-800 text-white inline-block font-medium" %>
       <%= link_to 'Edit this story', edit_story_path(@story), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 hover:bg-gray-300 inline-block font-medium" %>
-      <div class="inline-block ml-2">
+        <div class="my-2">
         <%= button_to 'Destroy this story', @story, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "mt-2 rounded-lg py-3 px-5 bg-red-400 hover:bg-red-600 text-white font-medium" %>
-      </div>
+        </div>
     <% end %>
-    <%= link_to "View All Story Chapters", story_chapters_path(@story), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 hover:bg-gray-300 inline-block font-medium" %>
-    <%= link_to 'View all Stories', stories_path, class: "rounded-lg py-3 px-5 bg-gray-100 hover:bg-gray-300 font-medium" %>
+    <div class="my-4">
+    <%= link_to "All Story Chapters", story_chapters_path(@story), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 hover:bg-gray-300 font-medium" %>
+    </div>
+    <div class="mt-6">
+    <%= link_to 'All Stories', stories_path, class: "rounded-lg py-3 px-5 bg-gray-100 hover:bg-gray-300 font-medium" %>
+    </div>
 
     <div class="mt-10 my-3">
     <h3 class="block text-2xl mb-1">Chapters</h3>
