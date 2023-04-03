@@ -16,12 +16,12 @@ Rails.application.configure do
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
 
-  config.action_mailer.default_url_options = { :host => "serial-pubisher.fly.dev" }
+  config.action_mailer.default_url_options = { :host => "serialpublisher.app" }
   #sendgrid
   ActionMailer::Base.smtp_settings = {
     :user_name => 'apikey',
     :password => ENV["SENDGRID_API_KEY"], 
-    :domain => 'serial-publisher.fly.dev',
+    :domain => 'serialpublisher.app',
     :address => 'smtp.sendgrid.net',
     :port => 587,
     :authentication => :plain,
