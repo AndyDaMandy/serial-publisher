@@ -1,20 +1,20 @@
 <div id="<%= dom_id story %>">
-  <div class="my-5">
+  <div class="my-2">
     <h3 class="text-2xl">
-      <strong class="block font-medium mb-1">Story Title:</strong>   
+      <strong class="block font-medium mb-1">Title:</strong>   
     </h3>
     <h1 class="text-4xl">
     <%= story.title %>
     </h1>
   </div>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Description:</strong>
+  <p class="my-2">
+    <strong class="font-medium mb-1">Description:</strong>
     <%= story.description %>
   </p>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Author:</strong>
+  <p class="my-2">
+    <strong class="font-medium mb-1">Author:</strong>
     <%= story.user.username %>
   </p>
   <p class="my-2"><em>Created on: <%= story.created_at.strftime("%c") %></em></p>
