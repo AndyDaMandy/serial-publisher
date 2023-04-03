@@ -28,7 +28,7 @@
     <%= link_to 'New chapter', new_story_chapter_path(@story), class: "rounded-lg py-3 px-5 bg-blue-600 hover:bg-blue-800 text-white inline-block font-medium" %>
       <%= link_to 'Edit this story', edit_story_path(@story), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 hover:bg-gray-300 inline-block font-medium" %>
         <div class="my-2">
-        <%= button_to 'Destroy this story', @story, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "mt-2 rounded-lg py-3 px-5 bg-red-400 hover:bg-red-600 text-white font-medium" %>
+        <%= button_to 'Destroy this story', @story, method: :delete, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "mt-2 rounded-lg py-3 px-5 bg-red-400 hover:bg-red-600 text-white font-medium" %>
         </div>
     <% end %>
     <div class="my-3">

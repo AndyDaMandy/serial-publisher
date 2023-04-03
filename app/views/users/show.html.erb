@@ -11,13 +11,13 @@
       <h3 class="block text-2xl mb-1"><%= @user.username %>'s Stories</h3>
       <ul>
       <% @user.stories.each do |story| %>
-          <% if story.status == 'published'%>
+          <% if story.status == 'published' || story.user == current_user %>
             <li class="text-xl my-1">
               <%= link_to story_path(story), class: "hover:text-amber-700" do %>
               <strong>
             <%= story.title %>
             </strong>
-          <% end %>
+            <% end %>
         <% end %>
         </li>
       <% end %>

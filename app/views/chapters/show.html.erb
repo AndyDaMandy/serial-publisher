@@ -4,7 +4,7 @@
     <%= render @chapter %>
     <% if user_signed_in? && @story.user == current_user %>
       <%= link_to 'Edit this chapter', edit_story_chapter_path(@story, @chapter), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 hover:bg-gray-300 inline-block font-medium" %>
-      <%= button_to 'Destroy this chapter', story_chapter_path(@story, @chapter), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "mt-2 rounded-lg py-3 px-5 bg-red-400 hover:bg-red-600 text-white font-medium" %>
+      <%= button_to 'Destroy this chapter', [@story, @chapter], method: :delete, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "mt-2 rounded-lg py-3 px-5 bg-red-400 hover:bg-red-600 text-white font-medium" %>
     <% end %>
     <div class="my-3">
     <%= link_to "View all Story Chapters", story_chapters_path(@story), class: "rounded-lg py-3 px-5 bg-gray-100 hover:bg-gray-300 inline-block font-medium" %>
