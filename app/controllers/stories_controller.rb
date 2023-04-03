@@ -20,7 +20,7 @@ class StoriesController < ApplicationController
        # @bookmarks = @stories.bookmarks
        # @stories = @stories.where()
       else
-       @pagy, @stories = pagy(Story.where(status: "published").or(Story.where(user_id: current_user.id)).order("created_at DESC"))
+       @pagy, @stories = pagy(Story.where(status: "published").order("created_at DESC"))
       end
     else
       @pagy, @stories = pagy(Story.where(status: "published").order("created_at DESC"))

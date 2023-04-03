@@ -42,7 +42,7 @@
     <% @story.chapters.order("chapter_number DESC").each do |chapter| %>
       <% if chapter.status == 'published'%>
         <li>
-          <%= link_to story_chapter_path(@story, chapter), class: "hover:text-amber-700" do %>
+          <%= link_to story_chapter_path(@story, chapter), class: "my-2 text-amber-900 hover:text-amber-700" do %>
         Chapter <%= chapter.chapter_number %> - <%= chapter.title %>
           <% end %>
         </li>

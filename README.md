@@ -1,24 +1,8 @@
-# README
+# Serial Publisher
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Serial Publisher is a simple site for writing serial stories. Using the Tinymce editor you can write your stories directly in the browser!
 
-Things you may want to cover:
+You can also save stories and chapters as drafts for later use. Have fun!
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Deployed at:
+https://serialpublisher.app
