@@ -7,23 +7,23 @@ class StoriesController < ApplicationController
   def index
     if user_signed_in?
       if params[:filter] == 'my_stories'
-        @stories = current_user.stories.order("created_at DESC")
+        @pagy, @stories = pagy(current_user.stories.order("created_at DESC"))
       elsif params[:filter] == 'bookmarked'
         arr = []
         current_user.bookmarks.each do |bookmark|
           arr << bookmark.story_id
         end
-        @stories = Story.where(status: "published").and(Story.where(id: arr)).order("created_at DESC")
+        @pagy, @stories = pagy(Story.where(status: "published").and(Story.where(id: arr)).order("created_at DESC"))
        #@stories = Story.where(status: "published").order("created_at DESC")
        #@stories = @stories.each.bookmarked_by(current_user)
        #@stories.all
        # @bookmarks = @stories.bookmarks
        # @stories = @stories.where()
       else
-        @stories = Story.where(status: "published").or(Story.where(user_id: current_user.id)).order("created_at DESC")
+       @pagy, @stories = pagy(Story.where(status: "published").or(Story.where(user_id: current_user.id)).order("created_at DESC"))
       end
     else
-      @stories = Story.where(status: "published").order("created_at DESC")
+      @pagy, @stories = pagy(Story.where(status: "published").order("created_at DESC"))
     end
     #@stories = Story.all.order("created_at DESC")
   end
