@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   #get 'users/update'
   #get 'followings/create'
   #get 'followings/destroy'
-  resources :users, :only => [:index, :show, :edit, :update]
+  
   
   resources :stories do
     resources :chapters
@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     resources :bookmarks
   end
   devise_for :users
+  resources :users, :only => [:index, :show, :edit, :update]
 
   root "stories#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
