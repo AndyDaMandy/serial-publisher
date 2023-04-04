@@ -93,25 +93,12 @@ class StoriesController < ApplicationController
 
   private
 
-  def bookmarked_by(user)
-    return false unless bookmarked?
-
-    bookmarks.any? {|b| b.user == user }
-  end   
-
-    def check_status(story)
-      if story.status == 'published'
-        true
-      else
-        false
-      end
-    end
-
     def create_or_delete_stories_tags(story, tags)
       story.taggables.destroy_all
       tags = tags.strip.split(',')
         tags.each do |tag|
           tag.strip!
+          tag.downcase!
           story.tags << Tag.find_or_create_by!(name: tag)
         end
     end

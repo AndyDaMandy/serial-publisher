@@ -1,11 +1,16 @@
 <div id="<%= dom_id story %>">
   <div class="my-2">
-    <h3 class="text-2xl">
-      <strong class="block font-medium mb-1">Title:</strong>   
-    </h3>
+    <% if action_name == "show"%>
     <h1 class="text-4xl">
     <%= story.title %>
     </h1>
+    <% else %>
+    <h1 class="text-4xl text-amber-900 hover:text-amber-600">
+    <%=link_to story do %>
+    <%= story.title %>
+    <% end %>
+    </h1>
+    <%end %>
   </div>
 
   <p class="my-2">
@@ -17,9 +22,7 @@
     <strong class="font-medium mb-1">Author:</strong>
     <%= story.user.username %>
   </p>
-  <p class="my-2"><em>Created on: <%= story.created_at.strftime("%c") %></em></p>
-  <p class="my-2">
-    <em>
+  <p class="my-2"> <strong class="font-medium mb-1">Created on:</strong> <em><%= story.created_at.strftime("%e %b %Y") %> | 
     Status: 
       <% if story.status =='published'%>
       Published
@@ -31,21 +34,22 @@
       </em>
     </p>
     
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Tags:</strong>
+  <p class="my-2">
+    <strong class="font-medium">Tags:</strong>
     <% story.tags.each do |tag| %>
       <%= link_to tag, class: "m-1 p-1 text-amber-900 hover:text-amber-600" do %>
       <span class="tag"><%= tag.name %></span>
       <% end %>
     <% end %>
   </p>
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Number of Chapters:</strong>
+  <p class="my-2">
+    <strong class="font-medium">Number of Chapters:</strong>
     <%= story.chapters.count %>
   </p>
 
   <p class="my-3">&#11088 <%= story.stars.count %> <%= (story.stars.count) == 1 ? 'Star' : 'Stars'%></p>
-
+  <hr class="mt-6 divide-amber-950">
+<% if false %>
   <% if action_name != "show" %>
     <%= link_to "Show this story", story, class: "rounded-lg py-3 px-5 bg-gray-100 hover:bg-gray-300 inline-block font-medium" %>
     <% if story.user == current_user %>
@@ -53,4 +57,5 @@
     <% end %>
     <hr class="mt-6">
   <% end %>
+<% end %>
 </div>

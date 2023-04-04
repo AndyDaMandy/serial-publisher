@@ -1,30 +1,31 @@
 <div class="w-full">
   <div class="flex justify-between items-center"> 
-   <h1 class="font-bold text-4xl"><%= @story.title %> - All Chapters</h1>
-   <% if user_signed_in? && @story.user == current_user %>
-   <div class="my-3">
-    <%= link_to 'New chapter', new_story_chapter_path, class: "rounded-lg py-3 px-5 bg-blue-600 hover:bg-blue-800 text-white block font-medium", data: { turbo: 'false' } %>
-    <div>
+    <%= link_to story_path(@story) do %>
+   <h1 class="font-bold text-4xl"><span class= "text-amber-900 hover:text-amber-600"><%= @story.title %></span>
+    - All Chapters</h1>
     <% end %>
-    <div class="my-3">
-    <%= link_to 'View All Stories', stories_path, class: "rounded-lg py-3 px-5 bg-blue-600 hover:bg-blue-800 text-white block font-medium" %>
-    </div>
-    <div class="my-3">
-    <%= link_to 'Back to story', story_path(@story), class: "rounded-lg py-3 px-5 bg-gray-100 hover:bg-gray-300 inline-block font-medium" %>
-    </div>
+   <% if user_signed_in? && @story.user == current_user %>
+    <%= link_to 'New chapter', new_story_chapter_path, class: "rounded-lg py-3 px-5 bg-blue-600 hover:bg-blue-800 text-white block font-medium", data: { turbo: 'false' } %>
+    <% end %>
+    <%# link_to 'View All Stories', stories_path, class: "rounded-lg py-3 px-5 bg-blue-600 hover:bg-blue-800 text-white block font-medium mr-6" %>
+    <%#link_to 'Back to story', story_path(@story), class: "rounded-lg py-3 px-5 bg-gray-100 hover:bg-gray-300 inline-block font-medium" %>
   </div>
 
   <div id="chapters" class="min-w-full">
     <% @story.chapters.each do |chapter| %>
-    <h3 class="my-5">
+    <%= link_to story_chapter_path(@story, chapter) do %>
+    <h3 class="text-xl font-bold my-5 text-amber-900 hover:text-amber-600">
     <%= chapter.title %>
     </h3>
+    <%end %>
     <p class="my-5">Chapter number: 
     <%= chapter.chapter_number %>
     </p>
     <p class="my-5">
     <%= chapter.description %>
     </p>
+    <hr class="mt-6">
+<% if false %>
     <% if action_name != "show" %>
     <%= link_to "Show this chapter", story_chapter_path(@story, chapter), class: "rounded-lg py-3 px-5 bg-gray-100 hover:bg-gray-300 inline-block font-medium" %>
     <% if user_signed_in? && chapter.user == current_user%>
@@ -33,5 +34,6 @@
     <hr class="mt-6">
     <% end %>
   <% end %>
+<% end %>
   </div>
 </div>

@@ -1,6 +1,6 @@
 <div class="mx-auto md:w-2/3 w-full flex">
   <div class="mx-auto">
-    <%= link_to 'Back to users', users_path, class: "rounded-lg py-3 px-5 bg-gray-100 hover:bg-gray-300 inline-block font-medium" %>
+    <%= link_to 'Back to Authors', users_path, class: "rounded-lg py-3 px-5 bg-gray-100 hover:bg-gray-300 inline-block font-medium" %>
     <%= render @user %>
     <%# link_to 'View Chapters', story_chapters_path(@story), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 hover:bg-gray-300 inline-block font-medium" %>
     <% if user_signed_in? && @user == current_user %>
@@ -13,7 +13,7 @@
       <% @user.stories.each do |story| %>
           <% if story.status == 'published' || story.user == current_user %>
             <li class="my-2">
-              <%= link_to story_path(story), class: "text-amber-500 hover:text-amber-700" do %>
+              <%= link_to story_path(story), class: "text-amber-700 hover:text-amber-500" do %>
               <strong>
             <%= story.title %>
             </strong>
@@ -23,6 +23,6 @@
       <% end %>
       </ul>
     </div>
-    <%= link_to 'Back to users', users_path, class: "rounded-lg py-3 px-5 bg-gray-100 hover:bg-gray-300 inline-block font-medium" %>
+    <%# link_to 'Back to users', users_path, class: "rounded-lg py-3 px-5 bg-gray-100 hover:bg-gray-300 inline-block font-medium" %>
   </div>
 </div>
