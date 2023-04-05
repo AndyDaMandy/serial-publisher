@@ -24,7 +24,7 @@
     <% end %>
     </div>
     <%# link_to 'View Chapters', story_chapters_path(@story), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 hover:bg-gray-300 inline-block font-medium" %>
-    <% if user_signed_in? && @story.user == current_user %>
+    <% if user_signed_in? && @story.user_id == current_user.id %>
     <%= link_to 'New chapter', new_story_chapter_path(@story), class: "rounded-lg py-3 px-5 bg-blue-600 hover:bg-blue-800 text-white inline-block font-medium" %>
       <%= link_to 'Edit this story', edit_story_path(@story), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 hover:bg-gray-300 inline-block font-medium" %>
         <div class="my-2">
@@ -40,10 +40,19 @@
     <h3 class="block text-2xl mb-1">Chapters</h3>
     <ul>
     <% @story.chapters.order("chapter_number DESC").each do |chapter| %>
-      <% if chapter.status == 'published'%>
+      <% if chapter.status == 'published' || user_signed_in? && chapter.user_id == current_user.id %>
         <li>
           <%= link_to story_chapter_path(@story, chapter), class: "my-2 text-amber-900 hover:text-amber-700" do %>
-        Chapter <%= chapter.chapter_number %> - <%= chapter.title %>
+        Chapter <%= chapter.chapter_number %> - <%= chapter.title %> - <em>Created on: <%= chapter.created_at.strftime("%e %b %Y") %> | 
+    Status: 
+      <% if chapter.status =='published'%>
+      Published
+      <% elsif chapter.status == 'archived' %>
+      Archived
+      <% else %>
+      Draft
+      <% end %>
+      </em>
           <% end %>
         </li>
       <% end %>

@@ -31,13 +31,11 @@
     <strong class="font-medium">Chapter Description:</strong>
     <%= chapter.description %>
   </p>
-  <p class="my-2"><em>Created on: <%= chapter.created_at.strftime("%e %b %Y") %></em></p>
-  <p class="my-2">
-    <em>
+  <p class="my-2"><em>Created on: <%= chapter.created_at.strftime("%e %b %Y") %> | 
     Status: 
       <% if chapter.status =='published'%>
       Published
-      <% elsif chapter.status == 'archive' %>
+      <% elsif chapter.status == 'archived' %>
       Archived
       <% else %>
       Draft

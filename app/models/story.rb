@@ -11,7 +11,9 @@ class Story < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
   has_many :taggables, dependent: :destroy
   has_many :tags, through: :taggables
-  validates :title, presence: true, length: {minimum: 1, maximum: 1000 }
+  validates :title, presence: true, length: {minimum: 1, maximum: 250 }
+  validates :description, length: { minimum: 0, maximum: 1000 }
+  validates :status, presence: true
 
-  enum status: [:draft, :published, :archive]
+  enum status: [:draft, :published, :archived]
 end

@@ -94,13 +94,16 @@ class StoriesController < ApplicationController
   private
 
     def create_or_delete_stories_tags(story, tags)
-      story.taggables.destroy_all
       tags = tags.strip.split(',')
+      if tags.length <= 10
+      story.taggables.destroy_all
+      
         tags.each do |tag|
           tag.strip!
           tag.downcase!
           story.tags << Tag.find_or_create_by!(name: tag)
         end
+      end
     end
     # Use callbacks to share common setup or constraints between actions.
     def set_story

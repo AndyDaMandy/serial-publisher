@@ -26,7 +26,7 @@
     Status: 
       <% if story.status =='published'%>
       Published
-      <% elsif story.status == 'archive' %>
+      <% elsif story.status == 'archived' %>
       Archived
       <% else %>
       Draft
@@ -37,14 +37,14 @@
   <p class="my-2">
     <strong class="font-medium">Tags:</strong>
     <% story.tags.each do |tag| %>
-      <%= link_to tag, class: "m-1 p-1 text-amber-900 hover:text-amber-600" do %>
+      <%= link_to tag, class: "mx-2 text-amber-900 hover:text-amber-600" do %>
       <span class="tag"><%= tag.name %></span>
       <% end %>
     <% end %>
   </p>
   <p class="my-2">
-    <strong class="font-medium">Number of Chapters:</strong>
-    <%= story.chapters.count %>
+    <strong class="font-medium">Number of Published Chapters:</strong>
+    <%= story.chapters.where(status: "published").count %>
   </p>
 
   <p class="my-3">&#11088 <%= story.stars.count %> <%= (story.stars.count) == 1 ? 'Star' : 'Stars'%></p>

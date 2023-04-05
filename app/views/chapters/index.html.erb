@@ -13,27 +13,41 @@
 
   <div id="chapters" class="min-w-full">
     <% @story.chapters.each do |chapter| %>
-    <%= link_to story_chapter_path(@story, chapter) do %>
-    <h3 class="text-xl font-bold my-5 text-amber-900 hover:text-amber-600">
-    <%= chapter.title %>
-    </h3>
-    <%end %>
-    <p class="my-5">Chapter number: 
-    <%= chapter.chapter_number %>
+      <% if chapter.status == 'published' || user_signed_in? && chapter.user_id == current_user.id %>
+      <%= link_to story_chapter_path(@story, chapter) do %>
+      <h3 class="text-xl font-bold my-5 text-amber-900 hover:text-amber-600">
+      <%= chapter.title %>
+      </h3>
+      <%end %>
+      <p class="my-5">Chapter number: 
+      <%= chapter.chapter_number %>
+      </p>
+      <p class="my-5">
+      <%= chapter.description %>
+      </p>
+      <p class="my-2"><em>Created on: <%= chapter.created_at.strftime("%e %b %Y") %> | 
+    Status: 
+      <% if chapter.status =='published'%>
+      Published
+      <% elsif chapter.status == 'archived' %>
+      Archived
+      <% else %>
+      Draft
+      <% end %>
+      </em>
     </p>
-    <p class="my-5">
-    <%= chapter.description %>
-    </p>
-    <hr class="mt-6">
+
+      <hr class="mt-6">
+    <% end %>
+    <% end %>
 <% if false %>
     <% if action_name != "show" %>
-    <%= link_to "Show this chapter", story_chapter_path(@story, chapter), class: "rounded-lg py-3 px-5 bg-gray-100 hover:bg-gray-300 inline-block font-medium" %>
-    <% if user_signed_in? && chapter.user == current_user%>
-      <%= link_to 'Edit this chapter', edit_story_chapter_path(@story, chapter), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 hover:bg-gray-300 inline-block font-medium" %>
+      <%= link_to "Show this chapter", story_chapter_path(@story, chapter), class: "rounded-lg py-3 px-5 bg-gray-100 hover:bg-gray-300 inline-block font-medium" %>
+      <% if user_signed_in? && chapter.user == current_user%>
+        <%= link_to 'Edit this chapter', edit_story_chapter_path(@story, chapter), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 hover:bg-gray-300 inline-block font-medium" %>
+      <% end %>
+      <hr class="mt-6">
     <% end %>
-    <hr class="mt-6">
-    <% end %>
-  <% end %>
 <% end %>
   </div>
 </div>

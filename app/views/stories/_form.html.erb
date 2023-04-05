@@ -27,7 +27,7 @@
   </div>
 
   <div class="my-5">
-  <%= form.label :tag, "Tags, separated by a comma and space:" %>
+  <%= form.label :tag, "Tags, separated by a comma (Maximum 10 tags or else they won't be generated):" %>
   <%= form.text_field :tags, value: story.tags.map(&:name).join(","), class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", placeholder: "example, second_tag, third_tag"%>
   </div>
 
