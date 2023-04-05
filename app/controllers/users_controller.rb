@@ -2,7 +2,11 @@ class UsersController < ApplicationController
   #before_action :set_user, only: %i[ show edit update destroy ]
   before_action :authenticate_user!, only: [:edit, :update]
   def index
+    if params[:search]
+      @pagy, @users = pagy(User.all.find_user(params[:search]))
+    else
     @pagy, @users = pagy(User.all.order("username ASC"))
+    end
   end
 
   def show

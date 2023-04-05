@@ -17,10 +17,10 @@
         <%= link_to "New Story", new_story_path, class: "block mt-4 lg:inline-block lg:mt-0 text-amber-900 hover:text-amber-600 mr-4" %>
         <%= link_to "My Stories", stories_path(:filter => 'my_stories'), class: "block mt-4 lg:inline-block lg:mt-0 text-amber-900 hover:text-amber-600 mr-4" %>
         <%= link_to "Bookmarked", stories_path(:filter => 'bookmarked'), class: "block mt-4 lg:inline-block lg:mt-0 text-amber-900 hover:text-amber-600 mr-4" %>
-        <%= link_to "Sign Out", destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure you'd like to sign out?" }, class: "inline-block text-sm px-4 py-2 leading-none border rounded border-white hover:border-transparent hover:bg-white mt-4 lg:mt-0 text-amber-900 hover:text-amber-600" %>
+        <%= link_to "Sign Out", destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure you'd like to sign out?" }, class: "inline-block text-sm px-4 py-2 leading-none border rounded border-amber-900 hover:border-transparent hover:bg-white mt-4 lg:mt-0 text-amber-900 hover:text-amber-950" %>
     <% else %>
-            <%= link_to "Log In", new_user_session_path, class: "inline-block text-sm px-4 py-2 leading-none border rounded border-amber-900 hover:border-transparent hover:bg-white mt-4 lg:mt-0 text-amber-900 hover:text-amber-600" %> 
-            <%= link_to "Sign Up", new_user_registration_path, class: "inline-block text-sm px-4 py-2 leading-none border rounded border-amber-900 hover:border-transparent hover:bg-white mt-4 lg:mt-0 text-amber-900 hover:text-amber-600" %>
+            <%= link_to "Log In", new_user_session_path, class: "inline-block text-sm px-4 py-2 leading-none border rounded border-amber-900 hover:border-transparent hover:bg-white mt-4 lg:mt-0 text-amber-900 hover:text-amber-950" %> 
+            <%= link_to "Sign Up", new_user_registration_path, class: "inline-block text-sm px-4 py-2 leading-none border rounded border-amber-900 hover:border-transparent hover:bg-white mt-4 lg:mt-0 text-amber-900 hover:text-amber-950" %>
    
     <% end %>
         </div>

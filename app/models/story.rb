@@ -16,4 +16,6 @@ class Story < ApplicationRecord
   validates :status, presence: true
 
   enum status: [:draft, :published, :archived]
+
+  scope :find_title, -> (title) {where("lower(title) ILIKE ?", '%' + title.downcase + '%')}
 end

@@ -3,7 +3,11 @@ class TagsController < ApplicationController
 
   # GET /tags or /tags.json
   def index
+    if params[:search]
+      @pagy, @tags = pagy(Tag.all.find_name(params[:search]).order("name ASC"))
+    else
     @pagy, @tags = pagy(Tag.all.order("name ASC"))
+    end
     #@pagy, @tags = pagy(Tag.all)
   end
 

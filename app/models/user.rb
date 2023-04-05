@@ -23,4 +23,5 @@ class User < ApplicationRecord
     self.role ||= :user
   end
 
+  scope :find_user, -> (username) {where("lower(username) ILIKE ?", '%' + username.downcase + '%')}
 end

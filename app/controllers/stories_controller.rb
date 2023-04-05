@@ -5,10 +5,10 @@ class StoriesController < ApplicationController
 
   # GET /stories or /stories.json
   def index
-    if user_signed_in?
-      if params[:filter] == 'my_stories'
+    #if user_signed_in?
+      if user_signed_in? && params[:filter] == 'my_stories'
         @pagy, @stories = pagy(current_user.stories.order("created_at DESC"))
-      elsif params[:filter] == 'bookmarked'
+      elsif user_signed_in? && params[:filter] == 'bookmarked'
         arr = []
         current_user.bookmarks.each do |bookmark|
           arr << bookmark.story_id
@@ -19,12 +19,14 @@ class StoriesController < ApplicationController
        #@stories.all
        # @bookmarks = @stories.bookmarks
        # @stories = @stories.where()
+      elsif params[:search]
+        @pagy, @stories = pagy(Story.where(status: "published").find_title(params[:search]).order("created_at DESC"))
       else
        @pagy, @stories = pagy(Story.where(status: "published").order("created_at DESC"))
       end
-    else
-      @pagy, @stories = pagy(Story.where(status: "published").order("created_at DESC"))
-    end
+    #else
+     # @pagy, @stories = pagy(Story.where(status: "published").order("created_at DESC"))
+    #end
     #@stories = Story.all.order("created_at DESC")
   end
 

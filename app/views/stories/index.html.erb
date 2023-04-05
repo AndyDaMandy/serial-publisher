@@ -12,7 +12,7 @@
     <%= link_to 'New story', new_story_path, class: "rounded-lg py-3 px-5 bg-blue-600 hover:bg-blue-800 text-white block font-medium" %>
     <% end %>
   </div>
-
+  <%= render 'search' %>
   <div id="stories" class="mt-5 min-w-full">
     <%= render @stories %>
   </div>
