@@ -19,6 +19,8 @@ class StoriesController < ApplicationController
        #@stories.all
        # @bookmarks = @stories.bookmarks
        # @stories = @stories.where()
+      #elsif user_signed_in? && params[:filter] == 'my_stories' && params[:search]
+        #@pagy, @stories = pagy(current_user.stories.find_title(params[:search]).order("created_at DESC"))
       elsif params[:search]
         @pagy, @stories = pagy(Story.where(status: "published").find_title(params[:search]).order("created_at DESC"))
       else
