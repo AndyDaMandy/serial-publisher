@@ -1,5 +1,5 @@
 class ChaptersController < ApplicationController
-  before_action :get_story
+  before_action :get_story, only: %i[ index show edit update destroy ]
   before_action :set_chapter, only: %i[ show edit update destroy ]
   before_action :authenticate_user!, only: %i[ new create edit update destroy ]
 
@@ -14,6 +14,10 @@ class ChaptersController < ApplicationController
     else
       @chapters = @story.chapters.where(status: "published").order("created_at DESC")
     end
+  end
+
+  def all_chapters
+    @chapters = Chapter.where(status: "published").order("created_at DESC")
   end
 
   # GET /chapters/1 or /chapters/1.json

@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:edit, :update]
   def index
     if params[:search]
-      @pagy, @users = pagy(User.all.find_user(params[:search]))
+      @pagy, @users = pagy(User.all.find_user(params[:search]).order("username ASC"))
     else
     @pagy, @users = pagy(User.all.order("username ASC"))
     end

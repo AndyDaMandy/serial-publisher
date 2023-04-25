@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   #get 'followings/create'
   #get 'followings/destroy'
   
-  
+  get 'chapters/all_chapters'
   resources :stories do
     resources :chapters
     resources :stars
@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users, :only => [:index, :show, :edit, :update]
 
-  root "stories#index"
+  root "chapters#all_chapters"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
