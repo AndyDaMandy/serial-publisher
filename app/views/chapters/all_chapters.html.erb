@@ -7,14 +7,19 @@
     <% @chapters.each do |chapter| %>
       <%= link_to story_chapter_path(chapter.story, chapter) do %>
       <h3 class="text-xl font-bold my-5 text-amber-900 hover:text-amber-600">
-      <%= chapter.title %> --- <%= chapter.story.title %>
+      <%= chapter.title %>
       </h3>
       <%end %>
+      <p class="my-5">
+      Story Title: <%= chapter.story.title %>
+      </p>
       <p class="my-5">Chapter number: 
       <%= chapter.chapter_number %>
       </p>
-      <p class="my-5">
+      <p class="my-5">Description: 
+      <em>
       <%= chapter.description %>
+      </em>
       </p>
       <p class="my-2"><em>Created on: <%= chapter.created_at.strftime("%e %b %Y") %> | 
     Status: Published   
