@@ -1,47 +1,46 @@
+# frozen_string_literal: true
+
+# Controller for chapters, belongs to users and to stories
 class ChaptersController < ApplicationController
-  before_action :get_story, only: %i[ index show edit update destroy ]
-  before_action :set_chapter, only: %i[ show edit update destroy ]
-  before_action :authenticate_user!, only: %i[ new create edit update destroy ]
+  before_action :set_story, only: %i[index show edit update destroy]
+  before_action :set_chapter, only: %i[show edit update destroy]
+  before_action :authenticate_user!, only: %i[new create edit update destroy]
 
   # GET /chapters or /chapters.json
   def index
-    if user_signed_in?
-      if @story.user == current_user
-        @chapters = @story.chapters.order("chapter_number DESC")
-      else
-        @chapters = @story.chapters.where(status: "published").order("created_at DESC")
-      end
-    else
-      @chapters = @story.chapters.where(status: "published").order("created_at DESC")
-    end
+    @chapters = if user_signed_in?
+                  if @story.user == current_user
+                    @story.chapters.order('chapter_number DESC')
+                  else
+                    @story.chapters.where(status: 'published').order('created_at DESC')
+                  end
+                else
+                  @story.chapters.where(status: 'published').order('created_at DESC')
+                end
   end
 
   def all_chapters
-    @chapters = Chapter.where(status: "published").order("created_at DESC")
+    @chapters = Chapter.where(status: 'published').order('created_at DESC')
   end
 
   # GET /chapters/1 or /chapters/1.json
   def show
     if user_signed_in?
       if @chapter.status != 'published' && @chapter.user != current_user
-        redirect_to story_path, alert: "You do not have access to this page"
+        redirect_to story_path, alert: 'You do not have access to this page'
       end
-    else
-      if @chapter.status != 'published'
-        redirect_to story_path, alert: "You do not have access to this page"
-      end
+    elsif @chapter.status != 'published'
+      redirect_to story_path, alert: 'You do not have access to this page'
     end
   end
 
   # GET /chapters/new
   def new
     @chapter = @story.chapters.build
-    #@chapter = Chapter.new
   end
 
   # GET /chapters/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /chapters or /chapters.json
   def create
@@ -50,7 +49,7 @@ class ChaptersController < ApplicationController
 
     respond_to do |format|
       if @chapter.save
-        format.html { redirect_to story_chapter_path(@story, @chapter), notice: "Chapter was successfully created." }
+        format.html { redirect_to story_chapter_path(@story, @chapter), notice: 'Chapter was successfully created.' }
         format.json { render :show, status: :created, location: @chapter }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -64,7 +63,7 @@ class ChaptersController < ApplicationController
     @chapter.user = current_user
     respond_to do |format|
       if @chapter.update(chapter_params)
-        format.html { redirect_to story_chapter_path(@story, @chapter), notice: "Chapter was successfully updated." }
+        format.html { redirect_to story_chapter_path(@story, @chapter), notice: 'Chapter was successfully updated.' }
         format.json { render :show, status: :ok, location: @chapter }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -78,23 +77,24 @@ class ChaptersController < ApplicationController
     @chapter.destroy
 
     respond_to do |format|
-      format.html { redirect_to story_url(@story), notice: "Chapter was successfully destroyed." }
+      format.html { redirect_to story_url(@story), notice: 'Chapter was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def get_story
-      @story = Story.friendly.find(params[:story_id])
-    end
 
-    def set_chapter
-      @chapter = @story.chapters.friendly.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_story
+    @story = Story.friendly.find(params[:story_id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def chapter_params
-      params.require(:chapter).permit(:title, :chapter_number, :description, :content, :status, :story_id, :user_id)
-    end
+  def set_chapter
+    @chapter = @story.chapters.friendly.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def chapter_params
+    params.require(:chapter).permit(:title, :chapter_number, :description, :content, :status, :story_id, :user_id)
+  end
 end

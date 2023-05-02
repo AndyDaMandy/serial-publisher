@@ -1,19 +1,20 @@
+# frozen_string_literal: true
+
+# Tags controller, unused currently
 class TagsController < ApplicationController
-  before_action :set_tag, only: %i[ show edit update destroy ]
+  before_action :set_tag, only: %i[show edit update destroy]
 
   # GET /tags or /tags.json
   def index
     if params[:search]
       @pagy, @tags = pagy(Tag.all.find_name(params[:search]).order("name ASC"))
     else
-    @pagy, @tags = pagy(Tag.all.order("name ASC"))
+      @pagy, @tags = pagy(Tag.all.order("name ASC"))
     end
-    #@pagy, @tags = pagy(Tag.all)
   end
 
   # GET /tags/1 or /tags/1.json
-  def show
-  end
+  def show; end
 
   # GET /tags/new
   def new
@@ -21,8 +22,7 @@ class TagsController < ApplicationController
   end
 
   # GET /tags/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /tags or /tags.json
   def create
@@ -63,6 +63,7 @@ class TagsController < ApplicationController
   end
 
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_tag
     @tag = Tag.find(params[:id])

@@ -1,10 +1,13 @@
+# frozen_string_literal: true
+
+# Story model, belongs to users
 class Story < ApplicationRecord
   extend FriendlyId
   friendly_id :title, use: :slugged
   def should_generate_new_friendly_id?
     title_changed?
   end
-  
+
   belongs_to :user
   has_many :chapters, dependent: :destroy
   has_many :stars, dependent: :destroy
@@ -15,7 +18,7 @@ class Story < ApplicationRecord
   validates :description, length: { minimum: 0, maximum: 1000 }
   validates :status, presence: true
 
-  enum status: [:draft, :published, :archived]
+  enum status: %i[draft published archived]
 
-  scope :find_title, -> (title) {where("lower(title) ILIKE ?", '%' + title.downcase + '%')}
+  scope :find_title, ->(title) { where('lower(title) ILIKE ?', '%' + title.downcase + '%') }
 end

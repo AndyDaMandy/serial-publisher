@@ -1,5 +1,7 @@
 <%= form_with url: tags_path, method: :get, class: "rounded-md outline-none px-3 py-2 mt-2" do |form| %>
   <%= form.text_field :search, placeholder: "Search Tags" %>
-  <%= form.submit "Search", class: "text-amber-900 hover:text-amber-700" %> | 
-  <%= link_to "Clear Search", tags_path, class: "text-amber-900 hover:text-amber-700"%>
+  <%= form.submit "Search", class: "text-amber-900 hover:text-amber-700" %>
+  <% if params[:search] %>
+  | <%= link_to "Clear Search", tags_path, class: "text-amber-900 hover:text-amber-700"%>
+  <% end %>
 <% end %>

@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# User model, using devise
 class User < ApplicationRecord
   extend FriendlyId
   friendly_id :username, use: :slugged
@@ -13,15 +16,15 @@ class User < ApplicationRecord
   has_many :stars, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
   has_many :followings
-  has_many :followers, :through => :followings
-  has_many :inverse_followings, :class_name => "Following", :foreign_key => "follower_id"
-  has_many :inverse_followers, :through => :inverse_followings, :source => :user
+  has_many :followers, through: :followings
+  has_many :inverse_followings, class_name: 'Following', foreign_key: 'follower_id'
+  has_many :inverse_followers, through: :inverse_followings, source: :user
 
-  enum role: [:user, :moderator, :admin]
-  after_initialize :set_default_role, :if => :new_record?
+  enum role: %i[user moderator admin]
+  after_initialize :set_default_role, if: :new_record?
   def set_default_role
     self.role ||= :user
   end
 
-  scope :find_user, -> (username) {where("lower(username) ILIKE ?", '%' + username.downcase + '%')}
+  scope :find_user, ->(username) { where('lower(username) ILIKE ?', '%' + username.downcase + '%')   }
 end
