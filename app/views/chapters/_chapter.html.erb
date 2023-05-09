@@ -9,7 +9,6 @@
   </div>
   <div class="my-5">
     <% if action_name == "show" %>
-     <strong class="font-medium">Chapter Title:</strong>
       <h2>
       <%= chapter.title %>
       </h2>
@@ -23,28 +22,21 @@
     <% end %>
   </div>
    <p class="my-5">
-    <strong class="font-medium">Chapter Number</strong>
+    <strong class="font-medium">Chapter: </strong>
     <%= chapter.chapter_number %>
   </p>
 
-  <p class="my-5">
-    <strong class="font-medium">Chapter Description:</strong>
-    <%= chapter.description %>
-  </p>
-  <p class="my-2"><em>Created on: <%= chapter.created_at.strftime("%e %b %Y") %> | 
-    Status: 
+  <p class="my-2"><em> <%= chapter.created_at.strftime("%e %b %Y") %>
       <% if chapter.status =='published'%>
-      Published
       <% elsif chapter.status == 'archived' %>
-      Archived
+      | Archived
       <% else %>
-      Draft
+     | Draft
       <% end %>
       </em>
     </p>
-
+  <hr>
   <div class="my-5">
-    <strong class="block font-medium mb-4">Chapter:</strong>
     <%= sanitize chapter.content %>
   </div>
 

@@ -12,7 +12,7 @@ class Chapter < ApplicationRecord
   belongs_to :user
   # has_rich_text :content
   validates :title, presence: true, length: { minimum: 1, maximum: 250 }
-  validates :description, length: { minimum: 0, maximum: 1000 }
+  # validates :description, length: { minimum: 0, maximum: 1000 }
   validates :chapter_number, presence: true, numericality: { only_integer: true, greater_than: 0, less_than: 1000 }
   validates :status, presence: true
   validates :content, presence: true, length: { minimum: 1, maximum: 30000 }

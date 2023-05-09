@@ -1,6 +1,6 @@
 <div class="w-full">
   <div class="flex justify-between items-center"> 
-   <h1 class="font-bold text-4xl">Latest Chapters</h1>
+   <h1 class="font-bold text-4xl text-amber-900">Latest Chapters</h1>
   </div>
 
   <div id="chapters" class="min-w-full">
@@ -13,16 +13,10 @@
       <p class="my-5">
       Story Title: <%= chapter.story.title %>
       </p>
-      <p class="my-5">Chapter number: 
+      <p class="my-5">Chapter:
       <%= chapter.chapter_number %>
       </p>
-      <p class="my-5">Description: 
-      <em>
-      <%= chapter.description %>
-      </em>
-      </p>
-      <p class="my-2"><em>Created on: <%= chapter.created_at.strftime("%e %b %Y") %> | 
-    Status: Published   
+      <p class="my-2"><em><%= chapter.created_at.strftime("%e %b %Y") %>
       </em>
     </p>
       <hr class="mt-6">

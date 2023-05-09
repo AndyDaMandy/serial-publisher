@@ -6,7 +6,7 @@
     </h1>
     <% else %>
     <h1 class="text-4xl text-amber-900 hover:text-amber-600">
-    <%=link_to story do %>
+    <%= link_to story do %>
     <%= story.title %>
     <% end %>
     </h1>
@@ -22,7 +22,7 @@
     <strong class="font-medium mb-1">Author:</strong>
     <%= story.user.username %>
   </p>
-  <p class="my-2"> <strong class="font-medium mb-1">Created on:</strong> <em><%= story.created_at.strftime("%e %b %Y") %> | 
+  <p class="my-2"> <strong class="font-medium mb-1"></strong> <em><%= story.created_at.strftime("%e %b %Y") %> |
     Status: 
       <% if story.status =='published'%>
       Published
@@ -43,7 +43,7 @@
     <% end %>
   </p>
   <p class="my-2">
-    <strong class="font-medium">Number of Published Chapters:</strong>
+    <strong class="font-medium">Published Chapters:</strong>
     <%= story.chapters.where(status: "published").count %>
   </p>
 

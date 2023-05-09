@@ -1,4 +1,4 @@
-<%= form_with url: stories_path, method: :get, class: "rounded-md outline-none px-3 py-2 mt-2" do |form| %>
+<%= form_with url: stories_path, method: :get, class: "rounded-md outline-none py-2 mt-2" do |form| %>
   <%= form.text_field :search, placeholder: "Search Titles" %>
   <%= form.submit "Search", class: "text-amber-900 hover:text-amber-700" %>
   <% if params[:search] %>
