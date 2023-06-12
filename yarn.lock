@@ -182,6 +182,11 @@ spark-md5@^3.0.1:
   resolved "https://registry.yarnpkg.com/spark-md5/-/spark-md5-3.0.2.tgz#7952c4a30784347abcee73268e473b9c0167e3fc"
   integrity sha512-wcFzz9cDfbuqe0FZzfi2or1sgyIrsDwmPwfZC4hiNidPdPINjeUwNfv5kldczoEAcjl9Y1L3SM7Uz2PUEQzxQw==
 
+tailwind-hamburgers@^1.3.5:
+  version "1.3.5"
+  resolved "https://registry.yarnpkg.com/tailwind-hamburgers/-/tailwind-hamburgers-1.3.5.tgz#a0afbc533c6fac6e4c357521b09e9124678c463b"
+  integrity sha512-0K1wfXWmF73BP3RWZU/UitFycV85f8gG7P0OZDB47fAjJ00hiv5AaFM3bJBtYynwfMG9vMgx05zpBogKVwyT2Q==
+
 trix@^2.0.4:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/trix/-/trix-2.0.4.tgz#37ec8092e5d561462cee1d96cc402aa5c5f8c04e"

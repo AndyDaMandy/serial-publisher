@@ -28,8 +28,23 @@
         </div>
       <% end %>
     
-    <main class="container mx-auto mt-20 px-5 flex">
+    <main class="container mx-auto lg:mt-20 mt-10 px-5 flex">
       <%= yield %>
     </main>
+      <script>
+          // This is for using the tailwind-hamburgers plugin
+          if (typeof tham === 'undefined') {
+              const tham = document.querySelector(".tham");
+              const navbar = document.getElementById("navbar");
+            //  const navbar2 = document.getElementById("navbar2");
+
+              tham.addEventListener('click', () => {
+                  tham.classList.toggle('tham-active');
+                  navbar.classList.toggle('hidden');
+                //  navbar2.classList.toggle('hidden');
+
+              });
+          }
+      </script>
   </body>
 </html>

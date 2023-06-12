@@ -1,11 +1,16 @@
 <nav class="flex items-center justify-between flex-wrap bg-amber-100 p-6">
-  <div class="flex items-center flex-shrink-0 text-amber-900 mr-6">
+  <div class="lg:hidden xl:hidden tham tham-e-squeeze tham-w-6 mr-4 mb-3">
+    <div class="tham-box">
+      <div class="bg-amber-800 tham-inner"></div>
+    </div>
+  </div>
+ <!-- <div class="flex items-center flex-shrink-0  mr-6"> -->
+ <!-- </div> -->
+  <div class="hidden w-full block flex-grow lg:flex lg:items-center lg:w-auto"  id="navbar">
     <%= image_tag "serial publisher.svg", class: "mr-4"%>
     <%= link_to chapters_all_chapters_path do %>
-    <span class="font-semibold text-xl tracking-tight">Serial Publisher</span>
+      <span class="font-semibold text-xl tracking-tight text-amber-900 mr-6">Serial Publisher</span>
     <% end %>
-  </div>
-  <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
     <div class="text-sm lg:flex-grow">
       <%= link_to "All Stories", stories_path, class: "block mt-4 lg:inline-block lg:mt-0 text-amber-900 hover:text-amber-600 mr-4" %>
       <%= link_to "Latest Chapters", chapters_all_chapters_path, class: "block mt-4 lg:inline-block lg:mt-0 text-amber-900 hover:text-amber-600 mr-4" %>
