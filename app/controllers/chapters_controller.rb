@@ -2,7 +2,7 @@
 
 # Controller for chapters, belongs to users and to stories
 class ChaptersController < ApplicationController
-  before_action :set_story, only: %i[index show edit update destroy]
+  before_action :set_story, only: %i[index new create show edit update destroy]
   before_action :set_chapter, only: %i[show edit update destroy]
   before_action :authenticate_user!, only: %i[new create edit update destroy]
 
@@ -95,6 +95,6 @@ class ChaptersController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def chapter_params
-    params.require(:chapter).permit(:title, :chapter_number, :description, :content, :status, :story_id, :user_id)
+    params.require(:chapter).permit(:title, :chapter_number, :content, :status, :story_id, :user_id)
   end
 end
